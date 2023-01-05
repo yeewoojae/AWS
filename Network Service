@@ -1,0 +1,63 @@
+Amazon VPC
+- Virtual Private Network Computing
+- IP대역(CIDR)할당하여 가상 사설 네트워크 구성
+- IPv4 / IPv6 Address blocks 지원
+- 서브넷 / 라우팅테이블로 서브네팅(public network service / private network service)
+- 인터넷 게이트웨이 연결하여 외부로 인터넷 통신
+- VPC Flow Log 활성화아여 트래픽 캡처
+- 프라이빗 엔드포인트 서비스 제공(외부로 안나가고 vpc 내부에서 통신 가능)
+- VPC Peering / Transit Gateway(multicast 사용가능) 로 VPC간 연동 - 여러개의 VPC를 하나의 사설 네트워크 처럼 사용하려면 위와같은 기능필요
+- AWS Transit Gateway를 통한 multi-cast
+
+VPC간 네트워크 연결(VPC Peering / Transit Gateway)
+
+VPC Peering(계정간연결, 리전간연결 가능)
+- 대역폭 제한이 없음
+- Peering 연결 수 VPC당 125개
+- Transit Gateway 대비 약 1.5배 저렴
+
+Transit Gateway
+- 최대 대역폭 50Gbps
+- Transit Gateway 당 최대 5,000개 VPC연결
+- VPC 연결 정책을 중앙에서 관리(on-premise와의 연결도 중앙에서 관리 가능)
+
+
+Amazon cloudfront
+- CDN(Contents Delivery Network)서비스 - 클라이언트가 인터넷에 접속하는 곳과 가까운 곳에서 컨텐츠를 캐싱해서 전 세계의 오리진 서버에서 컨텐츠를 배포하는 서버 네트워크
+ex. 아마존.com 사이트에 접근할때 바로 origin server인 미국이 아니라 내 위치에서 가장 가까운 곳에 캐싱된 edge location에 접근하여 최소한의 delay로 접근 가능하게 하는 서비스
+- 컨텐츠 배포 가속화(html, css, js 이미지 등)
+- Origin Server(원본 데이터 서버)
+- Edge Location(원본 데이터 캐시)
+* AWS cloudfront Invalidation(무효화)
+- 갱신 된 contents를 caching 하지 않으면 기존에 caching 된 contents가 사용자들에게 보여지므로 꼭 무효화 작업을 해야 갱신된 contents를 사용자 단에서 확인 가능
+
+
+Amazon Route53
+- AWS DNS 서비스
+- 도메인 구매/등록 서비스
+- 인터넷 트래픽을 리소스로 라우팅
+- 리소스 상태확인(health check)
+- 다양한 Routing Policy 제공(simple, weighted, latency, failover, geolocation 등)
+
+simple(단순) routing policy(기본정책)
+- 웹 사이트의 도메인을 단일 리소스에 라우팅
+
+weighted(가중치) routing policy
+- 동일한 기능에 대한 여러 리소스가 있고, 일부 사전 정의된 가중치를 기반으로 리소스 간의 트래픽을 분산해야 할때 사용
+
+latency(지연시간) routing policy
+- 동일한 기능에 대한 여러 리소스가 있고, Route53의 최상의 지연시간을 제공하는 응답 
+즉, 가장 빠른 응답시간을 제공할 region으로 뒤에 쓸 query에 응답하기를 원하는 경우에 주로 사용
+
+failover(장애조치) routing policy
+- 사이트 중에 하나가 active 다른 재해 복구 사이트가 standby 상태로 유지가 되는 정책
+Route53은 health check 기능을 사용해서 기본 사이트의 상태를 모니터링, 장애가 생겼을때 standby 하고 있는 사이트로 failover 시켜서 장애조치
+
+geolocation(지리적) routing policy
+- 사용자의 위치를 기반으로 트래픽을 라우팅 하는 경우
+ex. 글로벌 대규모 서비스 제공 -> geolocation routing policy를 사용하여 네트워크 지연 최소화
+
+
+
+
+
