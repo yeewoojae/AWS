@@ -1,0 +1,30 @@
+AWS Computing Service
+
+AWS EC2
+- Elastic Compute Cloud
+- Infra as a Service
+- Virtual Machine 서비스
+- 다양한 OS 지원(ex. CentOS, ubuntu, RedHat, SUSE, window...)
+- Auto Scaling을 통한 탄력적 확장/축소
+- 성능에 따른 다양한 인스턴스 타입 제공
+
+범용 컴퓨팅 타입(General Purpose) : T-family - T2, T3, T3a, T4g (버스트) / M-family - M4, M5zn, M5n, M5a, M5, M6g | T : Tiny / M : Main
+
+컴퓨팅 최적화(Compute Optimized) : C-family - C4, C5n, C5a, C5, C6gn, C6g | C : Compute
+
+메모리 최적화(Memory-Optimzied) : X-family - X1, X1e, X2gd / R-family - R4, R5n, R5b, R5a, R5, R6g | X : eXtreme / R : RAM
+
+가속 컴퓨팅(Accelerated Computing) : G-family - G3, G4ad, G4dn (Inf1, F1) / P-family - P2, P3, P4 | F : FPGA / G : Graphics / Inf : Inference / P : Picture
+
+스토리지 최적화(Storage Optimized) : I-family - I3, I3en (H1) / D-family - D2,D3,D3en | H : HDD / I : IOPS / D : Dense
+
+ex. M(인스턴스 패밀리)6(인스턴스 세대)g(추가 기능).xlarge(인스턴스 사이즈)
+
+
+AWS Lambda
+- 서버리스 컴퓨팅 서비스
+- FaaS(Function as a Service)
+- 다양한 런타임 지원(Java, node.js, GO, Python, C#...)
+- 필요 시에만 코드 실행
+- 사용한 만큼 지불
+- 실시간 파일처리 지원
