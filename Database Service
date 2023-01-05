@@ -1,0 +1,67 @@
+Amazon Database Service
+
+Amazon RDS
+- Relational Database Service
+- 다양한 DB 엔진 제공 : Oracle, SQL server, MariaDB, MySQL, PostgreSQL
+- 즉각적인 DB 컴퓨팅 사이즈 조정
+- 범용(SSD)스토리지
+- 자동 백업(가용성 및 내구성 향상)
+- 데이터 및 전송 데이터 암호화
+- 쉽고 빠른 이중화 구성(Multi-AZ)
+- Read Replica(읽기 전용 DB)
+- 관리 부담 감소 사용 편의성
+
+* Multi AZ 구성
+- Master DB(Active)와 동일한 Slave DB(Standby) 생성, 데이터는 동기식으로 생성
+- 장애 발생 시 failover를 통해 수분안에 조치 가능(장애 복구 시간에 민감하다면 반드시 사용 하지만 비용 문제 고려해야함)
+- 동일한 인스턴스를 한개 더 구성하므로 비용이 싱글보다 2배 더듬
+
+* RDS Read Replica(RR) 구성
+- 읽기 부하 분산 기능
+- 읽기 용도의 동일한 DB를 여러개 생성해서 읽기 용도의 부하 분산 실행 Master DB에 부하가 생긴 경우에 이를 활용해서 읽기에 대한 성능 개선 가능
+- 실제 어플리케이션에서 사용했을 경우 Master Endpoint 와 Read Replica Endpoint 가 별도로 제공되므로 이를 구분해서 DB설정을 해야함
+
+
+Amazon DynamoDB
+- 완전관리형 NoSQL 데이터베이스 : 관계형 데이터베이스보다 훨씬 다양한 방식으로 빠르게 바뀌는 대량의 비정형 데이터를 처리 가능
+- SSD 기반 무제한 스토리지
+- key-value 형태로 저장
+- 10m/s 미만의 응답 시간
+- 확장이 단순하고 신속함
+- 자동 이중화 백업(3개 지역 분산) : 가용성이 뛰어남
+- 관리 부담 감소 사용 편의성
+- 비정형 데이터 저장에 유용함 : 관계형 데이터베이스처럼 복잡한 데이터 처리 과정이 있는 경우가 아니고 스키마가 정해져 있지 않은 비정형 데이터를 저장하고 관리
+
+
+Amazon Elasticache
+- 완전관리형 In-Memory Cache DB 서비스 : 디스크 스토리지에 직접 접근하지 않고 메모리로 모든 처리, 데이터의 저장이나 검색 속도가 매우 빠름
+메모리의 크기 까지만 저장 가능, 메모리에만 저장이 되므로 서버에 전원 공급이 중단되면 데이터 소멸됨
+- Elasticache for redis
+- Elasticache for Memcached
+- 고가용성 캐시 서비스 구성
+- 관리 부담 감소 사용 편의
+
+Amazon Elasticache for Redis 3가지 클러스터 형태
+
+                                    싱글 클러스터               클러스터 모드 비활성               클러스터 모드
+
+Replication                              X                         O(최대 5개)                        O
+
+Data Partitioning                        O                              X                            O
+
+Scaling                             Scale Up/Down                 Scale UP/Down                 Scale In/Out(샤드)
+
+Multi-AZ                                 X                     최소 1개 Replica 필요                  O
+
+
+
+
+
+
+
+
+
+
+
+
+
